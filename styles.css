@@ -1,284 +1,406 @@
+/* =========================================================
+   VARIÁVEIS DE COR (MUDE O TEMA AQUI)
+========================================================= */
+:root {
+  --primary: #beff1b;      /* Cor destaque */
+  --accent: #f9004d;       /* Hover */
+  --bg-dark: #0b0f14;
+  --bg-mid: #121826;
+  --bg-light: #1f2630;
+  --text: #ffffff;
+}
+
+/* =========================================================
+   RESET GLOBAL
+========================================================= */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    list-style: none;
-    font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
+/* =========================================================
+   BODY / FUNDO BASE
+========================================================= */
 body {
-    background-color: black;
-    color: white;
-    font-size: 16px;
-    overflow: hidden;
+  background:
+    radial-gradient(
+      900px 420px at 80% 12%,
+      rgba(190, 255, 27, 0.14),
+      transparent 65%
+    ),
+    radial-gradient(
+      700px 360px at 20% 88%,
+      rgba(0, 180, 255, 0.12),
+      transparent 65%
+    ),
+    linear-gradient(
+      135deg,
+      var(--bg-dark) 0%,
+      var(--bg-mid) 45%,
+      var(--bg-dark) 100%
+    );
+
+  color: var(--text);
+  overflow-x: hidden;
+
+  /* Pulso de energia sutil */
+  animation: backgroundPulse 20s ease-in-out infinite;
 }
 
-header {
-    position: fixed;
-    width: 80vw;
-    left: 50%;
-    transform: translateX(-50%);
-    display: grid;
-    grid-template-columns: 1fr 600px;
-    gap: 10%;
-    align-items: center;
-    z-index: 2;
-
-    & img {
-        width: 200px;
-        margin: 10px;
-        margin-top: 25px;
-        margin-left: -20px;
-    }
-
-    
-
-    & nav {
-        & ul {
-            display: grid;
-            grid-template-columns: repeat(3, 250px);
-
-            & li {
-                color: #ffffff;
-                font-size: 23px;
-                cursor: pointer;
-
-                &:hover {
-                    color: #f9004d;
-                    transition: 0.7s;
-                }
-            }
-        }
-    }
-    
+/* =========================================================
+   CAMADA DE LUZES ANIMADAS
+========================================================= */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(
+      700px 350px at 25% 35%,
+      rgba(190, 255, 27, 0.16),
+      transparent 60%
+    ),
+    radial-gradient(
+      600px 300px at 75% 70%,
+      rgba(0, 180, 255, 0.14),
+      transparent 60%
+    );
+  animation: moveLights 30s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
 }
 
-
-
-section {
-    background-image: radial-gradient(#5a5454, #000000);
-    height: 100vh;
-    position: relative;
-
-    & .list {
-        width: 70vw;
-        margin: auto;
-        height: 100%;
-        position: relative;
-
-        & .item {
-            position: absolute;
-            inset: 0;
-
-            & .car-img {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 60%;
-
-                & img {
-                    width: 100%;
-                    transform: rotate(-20deg);
-                }
-
-                &::before {
-                    content: '';
-                    position: absolute;
-                    background-color: #000000;
-                    width: 100%;
-                    height: 100px;
-                    top: 150%;
-                    left: 50px;
-                    border: 50%;
-                    filter: blur(50px);
-                }
-            }
-
-            & .content {
-                position: absolute;
-                right: 100px;
-                width: 70%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: end;
-                gap: 20px;
-
-                & .car-information {
-                    font-weight: bold;
-                    font-family: "Libre Bodoni", serif;
-                    color: #ffffff;
-                    font-size: 13px;
-                }
-
-                & h2 {
-                    font-size: 70px;
-                    line-height: 1em;
-                    font-family: "League Gothic", sans-serif;
-                    color: #beff1b;
-                }
-
-                & .descritons {
-                    color: #ffffff;
-                    font-size: 13px;
-                    text-align: right;
-                    max-width: 300px;
-                    margin-top: 14px;
-                }
-
-                & .information {
-                    border-radius: 30px;
-                    height: 35px;
-                    width: 120px;
-                    text-transform: uppercase;
-                    border: 2px solid #731e8d;
-                    background-color: #beff1b;
-                    color: black;
-                    cursor: pointer;
-                    font-weight: bold;
-                    font-family: "League Gothic", sans-serif;
-                }
-            }
-        }
-    }
-
-    .arrows {
-        width: 80vw;
-        position: absolute;
-        top: 49%;
-        left: 50%;
-        transform: translate(-50%, -25px);
-        display: flex;
-        justify-content: space-between;
-
-        & button:nth-child(1) {
-            & img {
-                transform: scale(-1);
-            }
-        }
-
-        & button {
-            top: 60%;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: none;
-
-            & img {
-                width: 30px;
-                margin-top: 4px;
-            }
-
-            &:hover {
-                background-color: #f9004d;
-            }
-        }
-    }
-
-    .indicators {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 250px;
-        width: 90vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: end;
-        gap: 15px;
-
-        & .number {
-            font-size: 5em;
-            font-family: "League Gothic", sans-serif;
-            color: #15c6fc;
-        }
-
-        & ul {
-            display: flex;
-            gap: 10px;
-
-
-            & li {
-                width: 25px;
-                height: 6px;
-                background-color: #beff1b;
-                border-radius: 100px;
-                transition: 0.5s;
-            }
-
-            & .active {
-                background-color: #d9d9d9;
-            }
-        }
-    }
-
+/* =========================================================
+   TEXTURA / LINHAS TÉCNICAS
+========================================================= */
+.background-lines {
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.025),
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 8px
+    );
+  animation: slideLines 26s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
 }
 
-section {
+/* =========================================================
+   GARANTE CONTEÚDO NA FRENTE
+========================================================= */
+.header,
+.container,
+.slider {
+  position: relative;
+  z-index: 2;
+}
 
-    & .list {
-        --calculation: 1;
+/* =========================================================
+   HEADER / MENU
+========================================================= */
+.header {
+  position: fixed;
+  width: 100%;
+  padding: 15px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-        & .item {
-            transform: translateX(calc(100vw * var(--calculation)));
-            transition: 0.5s;
-            opacity: 0;
+.logo {
+  width: 160px;
+}
 
-            & .car-img {
-                & img {
-                    transform: rotate(0);
-                    transition: 0.5s;
-                    transition-delay: 0.3s;
+.menu {
+  display: flex;
+  gap: 40px;
+}
 
-                }
-            }
-        }
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
 
-        & .content {
+.menu a:hover {
+  color: var(--accent);
+}
 
-            & .car-information,
-            h2,
-            .descritons,
-            .information {
-                transform: translateX(cal(200px * var (--calculation)));
-                transition: 0.7s;
-                transition-delay: 0.3s;
-                opacity: 0;
-            }
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+}
 
-            & h2 {
-                transition-delay: 0.5s;
-            }
+/* =========================================================
+   SLIDER
+========================================================= */
+.container,
+.slider {
+  height: 100vh;
+}
 
-            & .descritons {
-                transition-delay: 0.7s;
-            }
+.list {
+  position: relative;
+  height: 100%;
+}
 
-            & .information {
-                transition-delay: 0.9s;
-            }
-        }
+/* Slide */
+.item {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(80px) scale(0.98);
+  transition: 0.7s ease;
+}
 
-        & .active {
-            transform: translateX(0);
-            transition: 0.5s;
-            opacity: 1;
+.item.active {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
 
-            & .car-img {
-                & img {
-                    transform: rotate(-20deg);
-                }
-            }
+/* =========================================================
+   IMAGEM DO CARRO
+========================================================= */
+.car-img {
+  width: 50%;
+  position: relative;
+}
 
-            & .car-information,
-            h2,
-            .descritons,
-            .information {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
+.car-img img {
+  width: 100%;
+  transform: rotate(-18deg) scale(0.95);
+  transition: 0.8s ease;
+}
 
-    }
+.item.active .car-img img {
+  transform: rotate(-18deg) scale(1);
+}
+
+/* Glow atrás do carro */
+.car-img::before {
+  content: "";
+  position: absolute;
+  width: 130%;
+  height: 130%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(190, 255, 27, 0.18),
+    transparent 60%
+  );
+  filter: blur(70px);
+  z-index: -1;
+}
+
+/* =========================================================
+   TEXTO (DIREITA)
+========================================================= */
+.content {
+  width: 50%;
+  padding-right: 80px;
+  text-align: right;
+  transform: translateY(120px); /* evita conflito com setas */
+}
+
+.car-information,
+.content h2,
+.descriptions,
+.information {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.6s ease;
+}
+
+.item.active .car-information,
+.item.active h2,
+.item.active .descriptions,
+.item.active .information {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.content h2 {
+  font-family: "League Gothic";
+  font-size: 72px;
+  color: var(--primary);
+}
+
+.descriptions {
+  max-width: 320px;
+  margin-left: auto;
+  font-size: 14px;
+}
+
+.information {
+  margin-top: 20px;
+  padding: 10px 25px;
+  border-radius: 30px;
+  border: none;
+  background: var(--primary);
+  cursor: pointer;
+}
+
+/* =========================================================
+   SETAS
+========================================================= */
+.arrows {
+  position: absolute;
+  top: 45%;
+  width: 100%;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.arrow-btn {
+  pointer-events: all;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(190,255,27,0.6);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.arrow-btn span {
+  font-size: 46px;
+  color: var(--primary);
+}
+
+.arrow-btn:hover {
+  background: var(--primary);
+  transform: scale(1.15);
+}
+
+.arrow-btn:hover span {
+  color: #000;
+}
+
+/* =========================================================
+   INDICADORES
+========================================================= */
+.indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.indicators ul {
+  display: flex;
+  gap: 10px;
+}
+
+.indicators li {
+  width: 22px;
+  height: 5px;
+  background: var(--primary);
+  opacity: 0.4;
+}
+
+.indicators li.active {
+  opacity: 1;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    background: black;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    padding: 20px;
+  }
+
+  .menu.show {
+    display: flex;
+  }
+
+  .item {
+    flex-direction: column;
+    padding-top: 90px;
+  }
+
+  .car-img,
+  .content {
+    width: 100%;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .content {
+    transform: translateY(40px);
+  }
+
+  .car-img img {
+    transform: rotate(0) scale(1);
+  }
+
+  .arrows {
+    top: auto;
+    bottom: 110px;
+  }
+
+  .background-lines {
+    opacity: 0.35;
+  }
+}
+
+/* =========================================================
+   ANIMAÇÕES
+========================================================= */
+@keyframes moveLights {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-40px, 30px) scale(1.05);
+  }
+  100% {
+    transform: translate(-80px, 60px) scale(1);
+  }
+}
+
+@keyframes slideLines {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 400px 200px;
+  }
+}
+
+@keyframes backgroundPulse {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.04);
+  }
 }
